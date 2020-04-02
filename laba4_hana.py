@@ -177,26 +177,30 @@ def fisher(m, prob, disp, ym, xnat, b, d):
 def console_print():
     titles_x = ["№", "X0", "X1", "X2", "X3", "X1*X2", "X1*X3", "X2*X3", "X1*X2*X3"]
 
+    # cycle for pretty printing title of table with normal parameters
     for j in range(N+1):
             s = ""
             if j == 0:
-                s = "  {:1s}  "
+                s = "  {:1s}  " # for №
             if j == 1:
-                s = " {:2s}  "
+                s = " {:2s}  "  # for X0
             if j >= 2 and j < 5:
-                s = "  {}  "
+                s = "  {}  "    # for X + num
             if j >= 5 and j < 8:
-                s = " {:5s}  "
+                s = " {:5s}  "  # for X*X, with different combinations
             if j == 8:
-                s = " {:8s}  "
-            print(s.format(titles_x[j]), end="")
+                s = " {:8s}  "  # for X*X*X
+            print(s.format(titles_x[j]), end="")    # taking all titles from list
 
+    # this cycle is used for printing Yi in title of table
     for i in range(m):
         print(" Yi{:d}  ".format(i+1), end="")
 
+    # printing Y middle, Y experimental and dispersion
     print("   Ys       Ye       S^2   ", end="")
 
     print()
+    # fill table with data
     for i in range(N):
         print("  {:1d}   {:2d}   {:3d}   {:3d}   {:3d}  ".format(i+1, xnorm[i][0], *xnat[i]), end="")
         if N == 8:
@@ -222,26 +226,31 @@ def console_print():
             print(" + {:.5f}*{}".format(b[i], titles_x[i+1]), end="")
 
     print("\n")
+
+    # the same style of printing table with natural parameters
     for j in range(N+1):
         s = ""
         if j == 0:
-            s += "  {}  "
+            s += "  {}  "       # for №
         if j == 1:
-            s += " {}  "
-        if j >= 2 and j < 5:
-            s += " {}  "
+            s += " {}  "        # for X0
+        if j >= 2 and j < 5:    
+            s += " {}  "        # for X + num
         if j >= 5 and j < 8:
-            s += " {}  "
+            s += " {}  "        # for X*X, with different combinations
         if j == 8:
-            s += " {}  "
-        print(s.format(titles_x[j]), end="")
+            s += " {}  "        # for X*X*X
+        print(s.format(titles_x[j]), end="")    # taking all titles from list
 
+    # this cycle is used for printing Yi in title of table
     for i in range(m):
         print(" Yi{:d}  ".format(i+1), end="")
 
+    # printing Y middle, Y experimental and dispersion
     print("   Ys       Ye       S^2   ", end="")
 
     print()
+    # fill table with data
     for i in range(N):
         print("  {:1d}   {:2d}   {:2d}   {:2d}   {:2d}  ".format(i+1, *xnorm[i]), end="")
         if N == 8:
